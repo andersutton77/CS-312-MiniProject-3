@@ -1,0 +1,148 @@
+.root, :root {
+    /* Sunset Ocean palette */
+    /* ~50% darker overall background for more contrast */
+    --bg: linear-gradient(180deg, #def4d8 0%, #def4f8 100%);
+    --card: #c6d8ec; /* warm sand */
+    --muted: #87aebd; /* desaturated ocean */
+    --accent: #ff6b5f; /* coral/sunset */
+    --accent-600: #e04f3f; /* deeper coral */
+    --accent-700: #c43f2f;
+    --teal: #d8f4fa; /* ocean teal */
+    --border: #b7d5ee;
+    --radius: 10px;
+    --max-width: 980px;
+    --gap: 16px;
+    --shadow: 0 6px 18px rgba(26,40,56,0.06);
+}
+
+* { box-sizing: border-box; }
+html,body{height:100%;}
+body{
+    margin:0;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:var(--bg);
+    color:#0f172a;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+}
+
+.container{
+    max-width:var(--max-width);
+    margin:0 auto;
+    padding:24px;
+}
+
+.site-header{
+    background:linear-gradient(90deg, rgba(42,159,184,0.06), rgba(255,107,95,0.02));
+    border-bottom:1px solid var(--border);
+}
+.site-header .container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+.site-title{
+    font-weight:700;
+    font-size:1.25rem;
+    color:var(--accent-600);
+}
+.nav{
+    display:flex;
+    gap:12px;
+}
+.nav a{
+    color:var(--muted);
+    text-decoration:none;
+    padding:8px 10px;
+    border-radius:6px;
+}
+.nav a:hover{background:rgba(42,159,184,0.06);color:var(--accent-700)}
+
+.main{
+    display:grid;
+    grid-template-columns: 1fr 320px;
+    gap:32px;
+    align-items:start;
+    margin-top:24px;
+}
+
+/* Make layout single-column on small screens */
+@media (max-width: 900px){
+    .main{grid-template-columns:1fr}
+    .site-header .container{flex-direction:column;align-items:flex-start}
+    .nav{width:100%;justify-content:flex-start;flex-wrap:wrap}
+}
+
+/* Posts grid */
+.posts{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap:var(--gap);
+    margin-top:8px;
+}
+
+.post-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:18px;
+    box-shadow:var(--shadow);
+    transition:transform .12s ease, box-shadow .12s ease;
+}
+.post-card:hover{ /* hover effect removed per request */ }
+.post-card h2{margin:0 0 8px 0;font-size:1.05rem}
+.post-card p{margin:0 0 12px 0;color:var(--muted)}
+.post-meta{font-size:0.85rem;color:var(--muted);margin-bottom:8px}
+
+/* Create / edit forms */
+.create-post{
+        background-color: var(--card);
+        padding: 18px;
+        border-radius:8px;
+        border:1px solid var(--border);
+        box-shadow:var(--shadow);
+}
+.form-row{display:flex;gap:12px;align-items:center}
+.form-row.stack{flex-direction:column}
+label{display:block;font-weight:600;margin-bottom:6px}
+input[type="text"], input[type="email"], textarea, select{
+    width:100%;
+    padding:10px 12px;
+    border:1px solid #d1d5db;
+    border-radius:6px;
+    background:#fff;
+    font-size:0.95rem;
+}
+textarea{min-height:110px;resize:vertical}
+
+.actions{display:flex;gap:10px;align-items:center;margin-top:12px}
+.btn{
+    display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:0.95rem
+}
+.btn:focus{outline:2px solid rgba(37,99,235,0.18)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-600)}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--muted)}
+
+.muted{color:var(--muted)}
+.small{font-size:0.85rem}
+
+/* Utilities */
+.center{text-align:center}
+.spaced{margin-top:18px}
+
+/* Footer */
+.site-footer{padding:24px 0;color:var(--muted);font-size:0.9rem;text-align:center;margin-top:32px}
+
+@media (max-width:480px){
+    .container{padding:16px}
+    .site-title{font-size:1rem}
+    .btn{padding:8px 10px}
+}
+
+/* Ensure forms inside cards look good */
+.post-card form{margin-top:8px}
