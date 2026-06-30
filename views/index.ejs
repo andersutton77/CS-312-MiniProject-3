@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Mini Project 1 Blog</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>My Blog</h1>
+        <p>Create and manage blog posts.</p>
+    </header>
+    <nav>
+        <a href="/signin">Sign In</a>
+
+        <a href="/signup">Sign Up</a>
+    </nav>
+    <section class="create-post">  <!-- Create a new blog post -->
+
+        <h2>Create New Post</h2>
+
+        <form action="/create" method="POST">
+
+            <input
+                type="text"
+                name="author"
+                placeholder="Your Name"
+                required>
+
+            <input
+                type="text"
+                name="title"
+                placeholder="Blog Title"
+                required>
+
+            <textarea
+                name="content"
+                placeholder="Write your blog post..."
+                rows="6"
+                required>
+            </textarea>
+
+            <button type="submit">
+                Create Post
+            </button>
+
+        </form>
+
+    </section>
+
+    <section class="posts">
+
+        <h2>All Posts</h2>
+
+        <% posts.forEach(post => { %>
+
+            <div class="post">
+                <h2><%= post.title %></h2>
+
+                <p><%= post.body %></p>
+
+                <p>By: <%= post.creator_name %></p>
+
+                <p><%= post.date_created %></p>
+
+                <a href="/edit/<%= post.blog_id %>">Edit</a>
+
+                <form action="/delete/<%= post.blog_id %>" method="POST">
+                <button type="submit">Delete</button>
+                </form>
+            </div>
+        <% }) %>
+    </section>
+
+</body>
+</html>
+
+
+
